@@ -5,19 +5,32 @@ import com.example.real_estate_api.services.UsersServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "/api/v1/users")
-public class Users {
+public class UsersController {
     @Autowired
     private UsersServices usersServices;
-    @PostMapping()
+    @PostMapping(value="/register")
     public String register(@RequestBody User user){
         return usersServices.register(user);
     }
 
-    @GetMapping()
+    @PostMapping(value="/login")
     public String login(@RequestBody User user){
         return usersServices.login(user.getEmail(), user.getPassword());
+    }
+
+    @GetMapping
+    public List<User> getAllUsers(){
+        return usersServices.getAllUsers();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Optional<User> getSpecificUser(@PathVariable("id") int id){
+        return usersServices.getSpecificUser(id);
     }
 
     @PutMapping(value = "/{id}")
@@ -31,3 +44,4 @@ public class Users {
     }
 
 }
+
