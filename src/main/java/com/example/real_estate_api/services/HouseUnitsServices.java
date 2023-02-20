@@ -28,6 +28,10 @@ public class HouseUnitsServices {
         return houseUnitsRepository.findAll();
     }
 
+    public HouseUnits getHouseUnitById(int id){
+        return houseUnitsRepository.findById(id).orElse(null);
+    }
+
     public HouseUnits getSpecificHouseUnit(String houseNumber){
         return  houseUnitsRepository.findByHouseNumber(houseNumber);
     }

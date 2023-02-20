@@ -29,6 +29,10 @@ public class TenantsServices {
         return tenantsRepository.findByApartmentId(id);
     }
 
+    public Tenant getTenantById(int id){
+        return tenantsRepository.findById(id).orElse(null);
+    }
+
     public String updateTenant(int id,Tenant tenant){
         Tenant existing = tenantsRepository.findById(id).orElse(null);
 

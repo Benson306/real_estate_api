@@ -18,6 +18,11 @@ public class TenantsController {
         return  tenantsServices.addTenant(tenant);
     }
 
+    @GetMapping(value = "/id/{id}")
+    public Tenant getTenantsById(@PathVariable("id") int id){
+        return tenantsServices.getTenantById(id);
+    }
+
     @GetMapping(value = "/apartment/{apartmentId}")
     public List<Tenant> getTenantsByApartment(@PathVariable("apartmentId") int apartmentId){
         return tenantsServices.getTenantsByApartment(apartmentId);

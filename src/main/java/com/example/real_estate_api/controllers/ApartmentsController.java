@@ -22,6 +22,10 @@ public class ApartmentsController {
         return apartmentsServices.getApartments();
     }
 
+    @GetMapping(value = "/id/{id}")
+    public Apartment getApartmentById(@PathVariable("id") int id){
+        return apartmentsServices.getApartmentById(id);
+    }
     @GetMapping(value="/{name}")
     public Apartment getSpecificApartment(@PathVariable("name") String name){
         return apartmentsServices.getSpecificApartment(name);
@@ -36,7 +40,5 @@ public class ApartmentsController {
     public String deleteApartment(@PathVariable("id") int id){
         return  apartmentsServices.deleteApartment(id);
     }
-
-
 
 }

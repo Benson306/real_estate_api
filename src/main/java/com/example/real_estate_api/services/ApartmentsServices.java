@@ -28,6 +28,10 @@ public class ApartmentsServices {
         return apartmentsRepository.findAll();
     }
 
+    public Apartment getApartmentById(int id){
+        return apartmentsRepository.findById(id).orElse(null);
+    }
+
     public Apartment getSpecificApartment(String name) {
         return apartmentsRepository.findByName(name);
     }
