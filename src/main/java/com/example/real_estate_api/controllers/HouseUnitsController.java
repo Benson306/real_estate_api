@@ -21,6 +21,11 @@ public class HouseUnitsController {
     public List<HouseUnits> getHouseUnits(){
         return houseUnitsServices.getHouseUnits();
     }
+
+    @GetMapping(value = "/apartment/{id}")
+    public List<HouseUnits> getHouseUnitsInApartment(@PathVariable("id") int id){
+        return houseUnitsServices.getHouseUnitsInApartment(id);
+    }
     @GetMapping(value = "/{houseNumber}")
     public HouseUnits getSpecificHouseUnit(@PathVariable("houseNumber") String houseNumber){
         return houseUnitsServices.getSpecificHouseUnit(houseNumber);

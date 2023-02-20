@@ -32,6 +32,10 @@ public class HouseUnitsServices {
         return  houseUnitsRepository.findByHouseNumber(houseNumber);
     }
 
+    public List<HouseUnits> getHouseUnitsInApartment(int apartmentID){
+        return houseUnitsRepository.findByApartmentId(apartmentID);
+    }
+
     public String updateHouseUnit(int id, HouseUnits houseUnits){
         HouseUnits units = houseUnitsRepository.findById(id).orElse(null);
 
