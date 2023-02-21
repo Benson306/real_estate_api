@@ -1,0 +1,865 @@
+openapi: 3.0.1
+info:
+  title: Real Estate API
+  description: A Real Estate API made with Spring Boot, Jpa, Mysql and Hibernate
+  license:
+    name: MIT
+    url: https://choosealicense.com/licenses/mit/
+  version: v1
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /api/v1/users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Get A Specific User
+      operationId: getSpecificUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags:
+        - Users
+      summary: Update User's Details
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+        - Users
+      summary: Delete a User
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/tenants/update/{id}:
+    put:
+      tags:
+        - Tenants
+      summary: Update a tenant's Details
+      operationId: updateTenant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tenant'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/landlords/update/{id}:
+    put:
+      tags:
+        - Landlords
+      summary: Update A Landlords Details
+      operationId: updateLandlord
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Landlord'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/house_units/update/{id}:
+    put:
+      tags:
+        - House Units
+      summary: Update a House Unit Details
+      operationId: updateHouseUnits
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HouseUnits'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/house_types/update/{id}:
+    put:
+      tags:
+        - House Types
+      summary: Update A House Type Detail
+      operationId: updateHouseTypes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HouseType'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/apartments/update/{id}:
+    put:
+      tags:
+        - Apartments
+      summary: Update A Specific Apartment Details
+      operationId: updateApartment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Apartment'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/users/register:
+    post:
+      tags:
+        - Users
+      summary: Register User
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/users/login:
+    post:
+      tags:
+        - Users
+      summary: Authenticate to Use API
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/tenants:
+    post:
+      tags:
+        - Tenants
+      summary: Add a Tenant
+      operationId: addTenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tenant'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/landlords:
+    get:
+      tags:
+        - Landlords
+      summary: Find All Landlords
+      operationId: getLandlords
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Landlord'
+    post:
+      tags:
+        - Landlords
+      summary: Add a Landlord
+      operationId: addLandlord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Landlord'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/house_units:
+    get:
+      tags:
+        - House Units
+      summary: Get All House Units
+      operationId: getHouseUnits
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HouseUnits'
+    post:
+      tags:
+        - House Units
+      summary: Add A House Unit
+      operationId: addHouseUnit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HouseUnits'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/house_types:
+    get:
+      tags:
+        - House Types
+      summary: Get All House Types
+      operationId: getAllHouseTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HouseType'
+    post:
+      tags:
+        - House Types
+      summary: Add House Types e.g Bedsitter, One Bedroom etc.
+      operationId: addHouseTypes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HouseType'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/billing:
+    post:
+      tags:
+        - Billing
+      summary: Post a Bill
+      operationId: addBill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bill'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/apartments:
+    get:
+      tags:
+        - Apartments
+      summary: Find All Apartments
+      operationId: getApartments
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Apartment'
+    post:
+      tags:
+        - Apartments
+      summary: Add an Apartment
+      operationId: addApartments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Apartment'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/users:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /api/v1/tenants/id/{id}:
+    get:
+      tags:
+        - Tenants
+      summary: Find a Tenant By Id
+      operationId: getTenantsById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tenant'
+  /api/v1/tenants/apartment/{apartmentId}:
+    get:
+      tags:
+        - Tenants
+      summary: Find Tenants By apartmentId
+      operationId: getTenantsByApartment
+      parameters:
+        - name: apartmentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tenant'
+  /api/v1/landlords/{fullName}:
+    get:
+      tags:
+        - Landlords
+      summary: Find A Specific Landlord
+      operationId: getSpecificLandlord
+      parameters:
+        - name: fullName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Landlord'
+  /api/v1/house_units/{houseNumber}:
+    get:
+      tags:
+        - House Units
+      summary: Get a Specific House Unit
+      operationId: getSpecificHouseUnit
+      parameters:
+        - name: houseNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/HouseUnits'
+  /api/v1/house_units/id/{id}:
+    get:
+      tags:
+        - House Units
+      summary: Get A House Unit By Id
+      operationId: getHouseUnitById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/HouseUnits'
+  /api/v1/house_units/apartment/{id}:
+    get:
+      tags:
+        - House Units
+      summary: Find All House Units In a Specific Apartment
+      operationId: getHouseUnitsInApartment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HouseUnits'
+  /api/v1/billing/tenant/{id}:
+    get:
+      tags:
+        - Billing
+      summary: Get All Bills of a Tenant
+      operationId: getBillByTenantId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bill'
+  /api/v1/billing/house/{id}:
+    get:
+      tags:
+        - Billing
+      summary: Get All Bills of a House Unit
+      operationId: getBillByHouseUnitId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bill'
+  /api/v1/billing/apartment/{id}:
+    get:
+      tags:
+        - Billing
+      summary: Get All Bills of an Apartment
+      operationId: getBillByApartmentId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bill'
+  /api/v1/apartments/{name}:
+    get:
+      tags:
+        - Apartments
+      summary: Find A Specific Apartment By name
+      operationId: getSpecificApartment
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Apartment'
+  /api/v1/apartments/id/{id}:
+    get:
+      tags:
+        - Apartments
+      summary: Find A Specific Apartment By Id
+      operationId: getApartmentById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Apartment'
+  /api/v1/tenants/delete/{id}:
+    delete:
+      tags:
+        - Tenants
+      summary: Delete a Tenant
+      operationId: deleteTenant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/landlords/delete/{id}:
+    delete:
+      tags:
+        - Landlords
+      summary: Delete a Landlord
+      operationId: deleteLandlord
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/house_units/delete/{id}:
+    delete:
+      tags:
+        - House Units
+      summary: Delete A House Unit
+      operationId: deleteHouseUnits
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/house_types/delete/{id}:
+    delete:
+      tags:
+        - House Types
+      summary: Delete A House Type
+      operationId: deleteHouseTypes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/apartments/delete/{id}:
+    delete:
+      tags:
+        - Apartments
+      summary: Delete A Specific Apartment By Id
+      operationId: deleteApartment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        fullName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: integer
+          format: int64
+        houseNumberId:
+          type: integer
+          format: int32
+        apartmentId:
+          type: integer
+          format: int32
+        status:
+          type: string
+        movedInOn:
+          type: string
+        lastBilledMonth:
+          type: string
+    Landlord:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        fullName:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+    HouseUnits:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        houseNumber:
+          type: string
+        rent:
+          type: integer
+          format: int32
+        houseTypeId:
+          type: integer
+          format: int32
+        apartmentId:
+          type: integer
+          format: int32
+    HouseType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          type: string
+    Apartment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        landlordId:
+          type: integer
+          format: int32
+        location:
+          type: string
+    Bill:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        tenantId:
+          type: integer
+          format: int32
+        apartmentId:
+          type: integer
+          format: int32
+        houseUnitId:
+          type: integer
+          format: int32
+        month:
+          type: string
+        billingTime:
+          type: string
+          format: date-time
